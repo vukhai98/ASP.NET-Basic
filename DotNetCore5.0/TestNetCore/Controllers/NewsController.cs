@@ -87,6 +87,19 @@ namespace TestNetCore.Controllers
 
         public IActionResult Index()
         {
+            var articles = new List<Article>
+            {
+                new Article {Id = 1,Title= "Title 01",Content="This is content for article 01",Author="KhaiChelsea"},
+                new Article {Id = 2,Title= "Title 02",Content="This is content for article 02",Author="KhaiChelsea"},
+                new Article {Id = 3,Title= "Title 03",Content="This is content for article 03",Author="KhaiChelsea"},
+                new Article {Id = 4,Title= "Title 04",Content="This is content for article 04",Author="KhaiChelsea"},
+                new Article {Id = 5,Title= "Title 05",Content="This is content for article 05",Author="KhaiChelsea"},
+                new Article {Id = 6,Title= "Title 06",Content="This is content for article 06",Author="KhaiChelsea"},
+                new Article {Id = 7,Title= "Title 07",Content="This is content for article 07",Author="KhaiChelsea"},
+                new Article {Id = 8,Title= "Title 08",Content="This is content for article 08",Author="KhaiChelsea"},
+            };
+            //Option 1: Using ViewBag;
+            ViewBag.Article = articles;
             return View();
         }
 
@@ -107,6 +120,13 @@ namespace TestNetCore.Controllers
         public class Employee {
             public string FirstName { set; get; }
             public string LastName { set; get; }
+        }
+        public class Article
+        {
+            public int Id { set; get; }
+            public string Title { set; get; }
+            public string Content { set; get; }
+            public string Author { set; get; }
         }
     }
 }
