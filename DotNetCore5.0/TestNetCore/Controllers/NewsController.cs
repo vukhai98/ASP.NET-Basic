@@ -85,6 +85,7 @@ namespace TestNetCore.Controllers
             }
         }*/
 
+        //[Route("Test")]
         public IActionResult Index()
         {
             var articles = new List<Article>
@@ -99,8 +100,11 @@ namespace TestNetCore.Controllers
                 new Article {Id = 8,Title= "Title 08",Content="This is content for article 08",Author="KhaiChelsea"},
             };
             //Option 1: Using ViewBag;
-            ViewBag.Article = articles;
-            return View();
+            //ViewBag.Article = articles;
+            //Option 2: Using ViewData
+            //ViewData["Article"] = articles;
+            //Option 3: Using Model
+            return View(articles);
         }
 
         public IActionResult StringOut2()

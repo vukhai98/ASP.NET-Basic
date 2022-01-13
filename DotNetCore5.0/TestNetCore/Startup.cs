@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -48,9 +48,26 @@ namespace TestNetCore
 
             app.UseEndpoints(endpoints =>
             {
+                //endpoints.MapControllerRoute(
+                //    name: "Secure",
+                //    pattern: "Secure",
+                //    new { controller = "Admin", action = "Index" });
+
+                //endpoints.MapControllerRoute(
+                //   name: "News",
+                //   pattern: "News",
+                //   new { controller = "News", action = "Index" });
+                //// Đường dẫn mặc định nếu không thấy nó sẽ chả về home
+                //endpoints.MapControllerRoute(
+                //   name: "Home",
+                //   pattern: "{Home}",
+                //   new { controller = "Home", action = "Index" });
+
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                   name: "default",
+                   pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
         }
     }

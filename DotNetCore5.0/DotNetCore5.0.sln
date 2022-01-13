@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore5.0", "DotNetCore5.0\DotNetCore5.0.csproj", "{A09C82BE-D671-46DB-A75D-BD881A0D447C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestNetCore", "TestNetCore\TestNetCore.csproj", "{FDA22F39-E10F-41B5-8397-EE24548A6B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestNetCore", "TestNetCore\TestNetCore.csproj", "{FDA22F39-E10F-41B5-8397-EE24548A6B05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloASP", "HelloASP\HelloASP.csproj", "{9C3DCD3B-4475-421D-A225-395552D969C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{FDA22F39-E10F-41B5-8397-EE24548A6B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDA22F39-E10F-41B5-8397-EE24548A6B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDA22F39-E10F-41B5-8397-EE24548A6B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C3DCD3B-4475-421D-A225-395552D969C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C3DCD3B-4475-421D-A225-395552D969C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C3DCD3B-4475-421D-A225-395552D969C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C3DCD3B-4475-421D-A225-395552D969C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

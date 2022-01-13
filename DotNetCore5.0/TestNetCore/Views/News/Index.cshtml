@@ -1,9 +1,10 @@
-﻿
+﻿@model List<TestNetCore.Controllers.NewsController.Article>;
 @{
     ViewData["Title"] = "News Homepage";
     Layout = "_Layout";
 
-    var articles = ViewBag.Article;
+    //var articles = ViewBag.Article;
+    //var articles = ViewData["Article"] as List<TestNetCore.Controllers.NewsController.Article>;
 }
 <h1>News Listing</h1>
 <table class="table">
@@ -13,14 +14,14 @@
         <th>Content</th>
         <th>Author</th>
     </tr>
-    @foreach (var article in articles)
+    @foreach (var article in Model)
     {
         <tr>
             <td>@article.Id</td>
             <td>@article.Title</td>
             <td>@article.Content</td>
             <td>@article.Author</td>
-            
+
         </tr>
     }
 </table>
