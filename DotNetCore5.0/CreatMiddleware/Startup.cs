@@ -23,7 +23,7 @@ namespace CreatMiddleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-           
+            
             app.UseStaticFiles(); //StaticFileMiddleware
             //app.UseMiddleware<FirstMiddleware>();
             app.UseFirstMiddleware(); // Dua vao pipeline FirstMiddleware
@@ -74,7 +74,7 @@ namespace CreatMiddleware
             app.Run(async (context) => {
                 await context.Response.WriteAsync("Hello ASP.NET CORE 5");
             });
-            app.UseStatusCodePages();
+           
         }
     }
 }
