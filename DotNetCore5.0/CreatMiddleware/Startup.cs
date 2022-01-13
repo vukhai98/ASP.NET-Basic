@@ -23,6 +23,7 @@ namespace CreatMiddleware
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+           
             app.UseStaticFiles(); //StaticFileMiddleware
             //app.UseMiddleware<FirstMiddleware>();
             app.UseFirstMiddleware(); // Dua vao pipeline FirstMiddleware
@@ -43,15 +44,41 @@ namespace CreatMiddleware
                     await context.Response.WriteAsync("Trang gioi thieu san pham"); });
             });
 
-            // Terminate Middleware
-            app.Run(async (context)=>{
-                await context.Response.WriteAsync("Hello ASP.NET CORE 5");
+            //Re nhanh pipeline
+            app.Map("/admin", (app1) =>
+            {
+                // Tao Middleware cua nhanh
+                app1.UseRouting();
+
+                //BE1
+                app1.UseEndpoints(endpoint => {
+                    endpoint.MapGet("/user", async (context) => {
+                        await context.Response.WriteAsync("Trang quan ly user");
+                    });
+                });
+
+                //BE2
+                app1.UseEndpoints(endpoint => {
+                    endpoint.MapGet("/product", async (context) => {
+                        await context.Response.WriteAsync("Trang quan ly product");
+                    });
+                });
+
+                //M2
+                app1.Run(async (context) => {
+                    await context.Response.WriteAsync("Trang Admin");
+                });
             });
 
+            // Terminate Middleware
+            app.Run(async (context) => {
+                await context.Response.WriteAsync("Hello ASP.NET CORE 5");
+            });
+            app.UseStatusCodePages();
         }
     }
 }
 /*
  * HttpContext
- * Pipeline :FristMiddleware->SecondMiddleware -> M1
+ * Pipeline :FristMiddleware->SecondMiddleware -> UseRouting->M1
  */

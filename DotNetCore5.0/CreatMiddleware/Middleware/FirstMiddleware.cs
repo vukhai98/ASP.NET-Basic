@@ -21,6 +21,7 @@ namespace CreatMiddleware.Middleware
             context.Items.Add("Data FirstMiddleware", $"<p>URL: {context.Request.Path}</p>");
             //await context.Response.WriteAsync($"<p>URL: {context.Request.Path}</p>");
             await _next(context);
+
         }
     }
 }
