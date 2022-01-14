@@ -58,7 +58,7 @@ public static class HtmlHelper
         string menuhtml = $@"
                     <div class=""container"">
                         <nav class=""navbar navbar-expand-lg navbar-dark bg-danger"">
-                            <a class=""navbar-brand"" href=""/"">XTLAB</a>
+                            <a class=""navbar-brand"" href=""/"">Home</a>
                             <button class=""navbar-toggler"" type=""button""
                                 data-toggle=""collapse"" data-target=""#my-nav-bar""
                                 aria-controls=""my-nav-bar"" aria-expanded=""false"" aria-label=""Toggle navigation"">
