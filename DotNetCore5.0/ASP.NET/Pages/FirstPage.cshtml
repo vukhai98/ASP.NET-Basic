@@ -1,0 +1,29 @@
+﻿@page "/Page1.html/{lenght:int?}"
+@model FirstPageModel
+@{ 
+    ViewData["Title"] = "Page1";
+}
+<h1 style="color:orangered">@Model.title</h1>
+<h2>@ViewData["mydata"]</h2>
+<p> Study program ASP.NET(<strong>@System.DateTime.Now;</strong>)</p>
+@{
+    var a = 2;
+    var b = 3;
+    var loopString = this.Request.RouteValues["lenght"] ?? "0";
+
+    int lenght = Int32.Parse(loopString.ToString());
+    <p> Sqrt of @a is: @Math.Sqrt(a); </p>
+}
+
+<p> Sum of @a and @b is:@(a+b) </p>
+<p> Number of loop is:@loopString</p>
+<ol>
+
+    @for (int i = 0; i < lenght; i++)
+    {
+        <li> Number @i</li>
+    }
+
+</ol>
+<p>@Model.Welcome("You")</p>
+<a asp-page="SecondPage">SecondPage</a>
