@@ -1,0 +1,79 @@
+﻿@*
+    - @bieuthuc @(bieuthuc): -> Html(endcode) <:&lt; >:&gt
+    - Html.Raw(string)
+    -@{
+        - Code C#
+        - Mo the HTML -> xuat HTML
+        - Phuong thuc cuc bo
+        - <text>
+        - @:
+        -@if,for,foreach, switcase...........
+        -@functions{
+            Member: Method, Field, Property    
+        }
+        - @page "url"
+        - @model Model
+        - @namespace 
+        - @using
+        - @TagHelper
+
+    }
+*@
+@page "/home.html"
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    var hello = "<div class='alert alert-danger'>Hello Vietnam</div>";
+
+}
+
+<h1 class="display-4 text-center "> Syntax Razor -@Title</h1>
+<p> @Model.Content</p>
+<ul>
+    <li>@(5+6)</li>
+    <li>@Math.PI, Sin(Pi/4) is @Math.Sin(Math.PI / 2)</li>
+    <li>@("<h1> Hello Everyone! </h1>")</li>
+    <li>@hello</li>
+    <li>@Html.Raw(hello)</li>
+</ul>
+
+<hr>
+@{
+    var hi = "Hello";
+    var age = 20;
+
+    void Welcome(string name)
+    {
+        var mgs = hi + " " + name;
+        <p>@mgs</p>
+    }
+
+}
+@if (age >= 18)
+{
+    <p> You @age age can access. </p>
+}
+else
+{
+    <p> You @age age can not access. </p>
+}
+@functions{
+    public string Title { set; get; } = "HOME PAGE";
+}
+
+<p>@hi</p>
+
+@{
+    Welcome("KhaiChelsea");
+
+    string[] products = new string[] { "IPhone", "MacBook", "AppleWatch", "AirPood" };
+    foreach (var item in products)
+    {
+        <text> [@item] </text>
+    }
+    <br />
+    foreach (var item in products)
+    {
+        @: [@item]
+    }
+}
