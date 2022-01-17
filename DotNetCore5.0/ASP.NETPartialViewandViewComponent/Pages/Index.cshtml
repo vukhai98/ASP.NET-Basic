@@ -1,0 +1,63 @@
+﻿@page
+@using ASP.NETPartialViewandViewComponent.Pages.Shared.Components.ProductBox
+@using ASP.NETPartialViewandViewComponent.Models
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+    ViewData["messageTitle"] = "News Products";
+    <br />
+    ViewData["content"] = "You  are watching  the new products.";
+}
+
+<form method="post">
+    <label>Enter your name</label>
+    <input  name="username"/ type ="text">
+    <input type="submit" value="Send" />
+
+</form>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+@await Html.PartialAsync("_Message")
+@{
+    var product1 = new Products() { Name = "Iphone 13 ProMax", Descrription = "Phone of Apple 2021", Price = 1000 };
+    var product2 = new Products() { Name = "JPhone 3", Descrription = "Phone of Sumsng 2021", Price = 1500 };
+    var product3 = new Products() { Name = "Oppo A8", Descrription = "Phone of Oppo 2022", Price = 500 };
+}
+<div class="row bg-info">
+    <div class="col">
+        <partial name="_ProductItems" model="product1" />
+
+    </div>
+    <div class="col">
+        @await Html.PartialAsync("_ProductItems", product2)
+
+    </div>
+    <div class="col">
+        @{
+            await Html.RenderPartialAsync("_ProductItems", product3);
+        }
+
+    </div>
+</div>
+
+<div class="row bg-warning">
+    @{
+        var products = new List<Products>()
+{
+        new Products(){Name="XiaoMi Note 10",Descrription = "Phone of Xiao Mi 2021",Price=900},
+        new Products(){Name= "Black Berkly 2", Descrription= "Phone of BlackBerkly 2010",Price=800},
+        new Products(){Name= "Nokia C2", Descrription= "Phone of Nokia 20013",Price= 100},
+    };
+        foreach (var product in products)
+        {
+            <div class="col">
+                @await Html.PartialAsync("_ProductItems", product)
+            </div>
+        }
+    }
+
+</div>
+@await Component.InvokeAsync("ProductBox")

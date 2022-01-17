@@ -1,0 +1,9 @@
+﻿@{ 
+    var title = ViewData["messageTitle"]??"Message";
+    var content = ViewData["content"]??"Content of message";
+}
+
+<div class="alert alert-danger">
+        <strong>@title</strong> <br />
+    @content
+</div>

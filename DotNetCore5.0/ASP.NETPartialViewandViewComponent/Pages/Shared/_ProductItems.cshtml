@@ -1,0 +1,15 @@
+﻿@using ASP.NETPartialViewandViewComponent.Models
+
+@model Products
+
+
+
+
+<div class="card my-4" style="width:20rem">
+    <h2 class="card-header text-info">@Model.Name</h2>
+    <div class="card-body">
+        <p class="card-text">@Model.Descrription</p>
+        <p>Price:@Model.Price</p>
+        <a href="#" class="btn btn-secondary">Order</a>
+    </div>
+</div>
