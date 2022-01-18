@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NETPartialViewandViewCo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHeplerExample", "TagHeplerExample\TagHeplerExample.csproj", "{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageModelExample", "PageModelExample\PageModelExample.csproj", "{DC0F2C10-532B-4A20-930B-2A8E5298B399}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PageModelExample", "PageModelExample\PageModelExample.csproj", "{DC0F2C10-532B-4A20-930B-2A8E5298B399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationExample", "ValidationExample\ValidationExample.csproj", "{1BED70EE-6358-4919-B198-201657B9DCE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +95,10 @@ Global
 		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BED70EE-6358-4919-B198-201657B9DCE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BED70EE-6358-4919-B198-201657B9DCE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BED70EE-6358-4919-B198-201657B9DCE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BED70EE-6358-4919-B198-201657B9DCE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
