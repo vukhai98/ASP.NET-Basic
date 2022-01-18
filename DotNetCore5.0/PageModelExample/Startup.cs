@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
@@ -59,4 +59,19 @@ namespace PageModelExample
     PageModel, Model Binding
     ProductPage
     dotnet new page -n ProductPage -o Pages -na PageModelExample
+    
+    -Model Biding : Liên kết dữ liệu
+     Dữ liệu gửi đến : (key,value)
+    
+     Nguồn :
+        - Form HTML (post):     HttpRequest.Form["key"]
+        - Query(form html-get): HttpRequest.Query["key"]
+        - Header:               HttpRequest.Header["key"]
+        - Route Data:           HttpRequest.RouteValues["key"]
+        -Upload
+        -Body
+    Đọc dữ liệu : HttpRequest (Controller,PageModel, View)
+    
+    -Attributes: Parameter Binding, Property Binding
+        Parameter Binding
  */

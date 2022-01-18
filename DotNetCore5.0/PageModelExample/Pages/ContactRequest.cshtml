@@ -1,4 +1,4 @@
-﻿@page
+﻿@page "/contact.html"
 @model ContactRequest
 @{ 
     ViewData["Title"] = "Liên hệ";
@@ -7,7 +7,36 @@
 <h1 class="display-4">Trang liên hện</h1>
 <p>Điền các thông tin liên hệ</p>
 <hr />
-@Model.UserId
-@Model.Sum(2,5.5)
+<form class="bg-light p-2 m-2 " method="post" asp-page="ContactRequest">
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="@Model.UserId"></label>
+        <input class="form-control" asp-for="@Model.UserId" />
+        <span class="text-danger" asp-validation-for="UserId"></span>
+    </div>
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="@Model.Email"></label>
+        <input class="form-control" asp-for="@Model.Email" />
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+    <div class="mb-3">
+        <label class="col-form-label" asp-for="@Model.UserName"></label>
+        <input class="form-control" asp-for="@Model.UserName" />
+        <span class="text-danger" asp-validation-for="UserName"></span>
+    </div>
+    <button class="btn btn-danger " type="submit">Send</button>
 
+</form>
+
+<div class="alert alert-danger">
+    <p>Thông tin User</p>
+    <ul>
+        <li>UserID: @Model.UserId</li>
+        <li>Email: @Model.Email</li>
+        <li>UserName: @Model.UserName</li>
+    </ul>
+</div>
+
+@section Scripts{ 
+ <partial name="_ValidationScriptsPartial" />
+}
 

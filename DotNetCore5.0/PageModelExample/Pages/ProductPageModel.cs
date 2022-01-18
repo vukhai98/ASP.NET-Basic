@@ -21,8 +21,22 @@ namespace PageModelExample
         public Product product { set; get; }
         // OnGet, OnPost , OnGetAbc.... HttpRequest
         // void , IActionResult
-        public void OnGet(int? id)
+
+
+        //[FromForm]
+        //[FromQuery]
+        //[FromRoute]
+        //[FromHeader]
+        //[FromBody]
+        public void OnGet(int? id,[Bind("Id","Name")] Product sanpham)
         {
+            Console.WriteLine($"ID : {sanpham.Id}");
+            Console.WriteLine($"ID: {sanpham.Name}");
+            //var data = this.Request.Form["id"];
+            //var data = this.Request.Query["id"];
+            //var data = this.Request.Headers["id"];
+            //var data = this.Request.RouteValues["id"];
+            //var data = this.Request.Body["id"];
             if (id != null)
             {
                 ViewData["Title"] = $"Sản phẩm (ID = {id.Value})";
