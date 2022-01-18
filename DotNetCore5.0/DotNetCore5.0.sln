@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NETLayout", "ASP.NET09\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NETPartialViewandViewComponent", "ASP.NETPartialViewandViewComponent\ASP.NETPartialViewandViewComponent.csproj", "{60787037-BE56-485D-9A02-C259C1107C66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHeplerExample", "TagHeplerExample\TagHeplerExample.csproj", "{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TagHeplerExample", "TagHeplerExample\TagHeplerExample.csproj", "{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PageModelExample", "PageModelExample\PageModelExample.csproj", "{DC0F2C10-532B-4A20-930B-2A8E5298B399}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8000D65C-7800-4B57-8FC3-9A3C79B8CACD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC0F2C10-532B-4A20-930B-2A8E5298B399}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
