@@ -9,6 +9,7 @@ namespace EntityFrameworkInASP.NET.Models
     public class MyBlogContext : DbContext
     {
         public DbSet<Article> Articles { set; get; }
+     
         public MyBlogContext(DbContextOptions<MyBlogContext> options) : base(options)
         {
             //......
