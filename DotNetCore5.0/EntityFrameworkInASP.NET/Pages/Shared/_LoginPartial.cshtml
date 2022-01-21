@@ -1,0 +1,34 @@
+﻿@using EntityFrameworkInASP.NET.Models;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<AppUser>  SignInManager
+@inject UserManager<AppUser> UserMangger
+@{
+    //SignInManager.IsSignedIn(User) //Chứ thông tin đang nhập của user trả về true/false
+    //UserManager.GetUserName(User) // Lấy tên của User
+}
+
+<ul class="navbar-nav">
+   @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index">
+               Xin chào @UserMangger.GetUserName(User)
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Logout">Đăng xuất</a>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Đăng ký</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Đăng nhập</a>
+        </li>
+    }
+</ul>
+
+
+

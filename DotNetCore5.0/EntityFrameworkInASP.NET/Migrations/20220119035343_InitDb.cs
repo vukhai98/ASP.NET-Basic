@@ -1,5 +1,5 @@
 ﻿using System;
-//using Bogus;
+using Bogus;
 using EntityFrameworkInASP.NET.Models;
 using Microsoft.EntityFrameworkCore.Migrations;
 
@@ -35,27 +35,27 @@ namespace EntityFrameworkInASP.NET.Migrations
             //    }
             //    );
             //Fake Data :Bogus
-            //Randomizer.Seed = new Random(8675309);
+            Randomizer.Seed = new Random(8675309);
 
-            //var fakeArticle = new Faker<Article>();
-            //fakeArticle.RuleFor(a => a.Title, f => f.Lorem.Sentence(5, 5));
-            //fakeArticle.RuleFor(a => a.Created, f => f.Date.Between(new DateTime(2022, 1, 1), new DateTime(2022, 12, 30)));
-            //fakeArticle.RuleFor(a => a.Content, f => f.Lorem.Paragraphs(1, 4));
+            var fakeArticle = new Faker<Article>();
+            fakeArticle.RuleFor(a => a.Title, f => f.Lorem.Sentence(5, 5));
+            fakeArticle.RuleFor(a => a.Created, f => f.Date.Between(new DateTime(2022, 1, 1), new DateTime(2022, 12, 30)));
+            fakeArticle.RuleFor(a => a.Content, f => f.Lorem.Paragraphs(1, 4));
 
-            //for (int i = 0; i < 20; i++)
-            //{
-            //    Article article = fakeArticle.Generate();
-            //    migrationBuilder.InsertData(
-            //   table: "Articles",
-            //   columns: new[] { "Title", "Created", "Content" },
-            //   values: new object[]
-            //   {
-            //        article.Title,
-            //        article.Created,
-            //        article.Content
-            //   }
-            //   );
-            //}
+            for (int i = 0; i < 150; i++)
+            {
+                Article article = fakeArticle.Generate();
+                migrationBuilder.InsertData(
+               table: "Articles",
+               columns: new[] { "Title", "Created", "Content" },
+               values: new object[]
+               {
+                    article.Title,
+                    article.Created,
+                    article.Content
+               }
+               );
+            }
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
