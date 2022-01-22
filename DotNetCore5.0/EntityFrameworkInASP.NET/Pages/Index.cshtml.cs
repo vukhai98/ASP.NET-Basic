@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkInASP.NET.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,8 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkInASP.NET.Pages
 {
+    //[AllowAnonymous]
+    [Authorize] // Người dùng phải đăng nhập khi truy trập trang này 
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;

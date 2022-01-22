@@ -28,18 +28,19 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage ="Phải nhập chính xác {0}")]
             [EmailAddress]
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = " Mật khẩu phải dài từ {2} đến {1} ký tự.", MinimumLength = 6)]
             [DataType(DataType.Password)]
+            [Display(Name = "Nhập mật khẩu mới")]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Lặp lại mật khẩu")]
+            [Compare("Password", ErrorMessage = "Mật khẩu nhập lại không khớp .")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }
@@ -49,7 +50,7 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
         {
             if (code == null)
             {
-                return BadRequest("A code must be supplied for password reset.");
+                return BadRequest("Mã token không chính xác.");
             }
             else
             {

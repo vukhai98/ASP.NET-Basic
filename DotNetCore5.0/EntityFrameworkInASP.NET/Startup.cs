@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc.Authorization;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,6 +36,7 @@ namespace EntityFrameworkInASP.NET
             services.AddSingleton<IEmailSender, SendMailService>();
 
             services.AddRazorPages().AddRazorRuntimeCompilation();
+                //.AddMvcOptions(o=>o.Filters.Add(new AuthorizeFilter())).AddRazorRuntimeCompilation(); //Globel Filter
             services.AddDbContext<MyBlogContext>(options => {
                 string connectString = Configuration.GetConnectionString("MyBlogContext");
                 options.UseSqlServer(connectString);
@@ -47,7 +50,6 @@ namespace EntityFrameworkInASP.NET
             services.AddDefaultIdentity<AppUser>()
                     .AddEntityFrameworkStores<MyBlogContext>()
                     .AddDefaultTokenProviders();
-
 
             // Truy cập IdentityOptions
             services.Configure<IdentityOptions>(options => {
@@ -71,9 +73,29 @@ namespace EntityFrameworkInASP.NET
 
                 // Cấu hình đăng nhập.
                 options.SignIn.RequireConfirmedEmail = true;            // Cấu hình xác thực địa chỉ email (email phải tồn tại)
-                options.SignIn.RequireConfirmedPhoneNumber = false;     // Xác thực số điện thoại
+                options.SignIn.RequireConfirmedPhoneNumber = false;
+                // Xác thực số điện thoại
 
+                //
+                options.SignIn.RequireConfirmedAccount = true;
+                
             });
+
+            services.Configure<RouteOptions>(options => {
+                options.LowercaseUrls = true; // url chữ thường
+                options.LowercaseQueryStrings = false; // không bắt query trong url phải in thường
+            });
+
+            services.ConfigureApplicationCookie(options => {
+                // options.Cookie.HttpOnly = true;  
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.LoginPath = $"/login/";
+                options.LogoutPath = $"/logout/";
+                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+            });
+
+            //services.AddAuthorization();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -102,6 +124,7 @@ namespace EntityFrameworkInASP.NET
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
+                //endpoints.MapRazorPages().RequireAuthorization();
             });
         }
     }
