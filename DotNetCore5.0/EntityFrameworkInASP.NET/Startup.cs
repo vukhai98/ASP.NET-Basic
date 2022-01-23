@@ -93,6 +93,19 @@ namespace EntityFrameworkInASP.NET
                 options.LogoutPath = $"/logout/";
                 options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
             });
+            services.AddAuthentication()
+                    .AddGoogle(options => {
+                      var gConfig =  Configuration.GetSection("Authentication:Google");
+                        options.ClientId = gConfig["ClientId"];
+                        options.ClientSecret = gConfig["ClientSecret"];
+                        options.CallbackPath = "/dangnhaptugoogle";
+                    })
+                    .AddFacebook(options => {
+                        var fConfig = Configuration.GetSection("Authentication:Facebook");
+                        options.ClientId = fConfig["AppId"];
+                        options.ClientSecret = fConfig["AppSecret"];
+                        options.CallbackPath = "/dang-nhap-tu-facebook";
+                    });
 
             //services.AddAuthorization();
             
@@ -139,5 +152,6 @@ namespace EntityFrameworkInASP.NET
         
     /Identity/Account/Login
     /Identity/Account/Manage
+//https://localhost:5001/dangnhaptugoogle
 
  */
