@@ -10,9 +10,13 @@ namespace EntityFrameworkInASP.NET.Models
 {
     public class AppUser : IdentityUser
     {
-        [Column(TypeName="nvarchar")]
+        [Column(TypeName = "nvarchar")]
         [StringLength(400)]
         public string HomeAdress { set; get; }
+
+        [DataType(DataType.Date)]
+        [Required]
+        public  DateTime  BirthDate {set; get;}
 
     }
 }

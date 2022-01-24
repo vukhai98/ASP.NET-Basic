@@ -62,7 +62,7 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Sai mật khẩu.");
                     return Page();
                 }
             }
