@@ -27,6 +27,7 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
+            keyValues = new List<KeyValuePair<string, string>>();
         }
 
        
@@ -39,9 +40,9 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
         public string[] RoleNames { set; get; }
 
         public SelectList  allRoles { set; get; }
-       
 
-        public AppUser user { set; get; }
+        public List<KeyValuePair<string,string>> keyValues { set; get; }
+        public string  UserName { set; get; }
 
 
         public async Task<IActionResult> OnGetAsync(string id)
@@ -56,10 +57,17 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
             {
                 return NotFound($"Không thấy user, id = {id}.");
             }
+            UserName = user.UserName;
             RoleNames = (await _userManager.GetRolesAsync(user)).ToArray<string>();
 
             List<string> roleNames = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
             allRoles = new SelectList(roleNames);
+
+            //List<IdentityRole> roleNames2 = await _roleManager.Roles.ToListAsync();
+            //if(roleNames2 != null && roleNames2.Any())
+            //{
+            //    keyValues = roleNames2.Select((s, i) => new KeyValuePair<string, string>(s.Id, s.Name)).ToList();
+            //}
 
             return Page();
         }

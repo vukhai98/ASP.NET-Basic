@@ -5,7 +5,7 @@
 
 }
 
-<h4>Thiết lập mật khẩu cho thành viên:@Model.user?.UserName</h4>
+<h4>Thiết lập mật khẩu cho thành viên:@Model.UserName</h4>
 <partial name="_StatusMessage" for="StatusMessage" />
 
 <div class="row">
@@ -13,14 +13,28 @@
         <form id="set-password-form" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="RoleNames"></label>
-                @Html.ListBoxFor(m => m.RoleNames, Model.allRoles, new
-                {
-                    id = "id-select-roles",
-           })
-                <span asp-validation-for="RoleNames" class="text-danger"></span>
-            </div>
+                    <label asp-for="RoleNames"></label>
+                    @Html.ListBoxFor(m => m.RoleNames, Model.allRoles, new
+                    {
+                        id = "id-select-roles",
+                    })
+                    <span asp-validation-for="RoleNames" class="text-danger"></span>
+                </div>
 
+            @*<div class="form-group">
+                <label asp-for="RoleNames"></label>
+                <select name="RoleNames" id="RoleNames" multiple>
+                    @if (Model.keyValues != null && Model.keyValues.Any())
+                    {
+                        foreach (var item in Model.keyValues)
+                        {
+                            <option value="@item.Value">@item.Value</option>
+                        }
+                    }
+                </select>
+
+                <span asp-validation-for="RoleNames" class="text-danger"></span>
+            </div>*@
             <button type="submit" class="btn btn-primary">Cập nhật</button>
             <a class="btn btn-primary" asp-page="./Index">Danh sách thành viên</a>
         </form>
@@ -28,8 +42,8 @@
 </div>
 
 @section Scripts {
-  
- 
+
+
 
     <partial name="_ValidationScriptsPartial" />
 }

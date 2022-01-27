@@ -78,7 +78,7 @@
     }
 
         .ms-choice > div.icon-close:before {
-            content: '×';
+            content: 'ï¿½';
             color: #888;
             font-weight: bold;
             position: absolute;
