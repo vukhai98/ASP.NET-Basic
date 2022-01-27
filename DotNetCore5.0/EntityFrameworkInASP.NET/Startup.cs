@@ -48,9 +48,10 @@ namespace EntityFrameworkInASP.NET
             //        .AddDefaultTokenProviders();
             // Đăng kí Identity
             services.AddDefaultIdentity<AppUser>()
+                    .AddRoles<IdentityRole>()
                     .AddEntityFrameworkStores<MyBlogContext>()
                     .AddDefaultTokenProviders();
-
+           
             // Truy cập IdentityOptions
             services.Configure<IdentityOptions>(options => {
                 // Thiết lập về Password
@@ -91,7 +92,7 @@ namespace EntityFrameworkInASP.NET
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
                 options.LoginPath = $"/login/";
                 options.LogoutPath = $"/logout/";
-                options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+                options.AccessDeniedPath = $"/khongduoctruycap.html";
             });
             services.AddAuthentication()
                     .AddGoogle(options => {
@@ -107,8 +108,12 @@ namespace EntityFrameworkInASP.NET
                         options.CallbackPath = "/dang-nhap-tu-facebook";
                     });
 
+            services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
+
+
+
             //services.AddAuthorization();
-            
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -139,6 +144,7 @@ namespace EntityFrameworkInASP.NET
                 endpoints.MapRazorPages();
                 //endpoints.MapRazorPages().RequireAuthorization();
             });
+          
         }
     }
 }
@@ -148,6 +154,20 @@ namespace EntityFrameworkInASP.NET
     Identity:
        Athentication : Xác định danh tính -> Login , logot
        Authorization: Xác thực quyền truy cập 
+       Role-based athorization- xác thực quyền theo vai trò
+        - Role (vai trò): (Adim,Editor,Manager,Member...)
+
+        /Areas/Admin/Pages/Role
+            Index
+            Create
+            Edit
+            Delete
+
+
+
+
+
+
        Quản lý user: Sing up , User , Role...................
         
     /Identity/Account/Login
