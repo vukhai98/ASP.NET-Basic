@@ -20,14 +20,18 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
 
         private readonly RoleManager<IdentityRole> _roleManager;
 
+        private readonly MyBlogContext _context;
+
         public AddRoleModel(UserManager<AppUser> userManager,
                SignInManager<AppUser> signInManager,
-               RoleManager<IdentityRole> roleManager)
+               RoleManager<IdentityRole> roleManager,
+               MyBlogContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _roleManager = roleManager;
             keyValues = new List<KeyValuePair<string, string>>();
+            _context = context;
         }
 
        
@@ -44,6 +48,30 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
         public List<KeyValuePair<string,string>> keyValues { set; get; }
         public string  UserName { set; get; }
 
+        public AppUser User { set; get; }
+
+     
+        public List<IdentityRoleClaim<string>> claimsInRole { set; get; }
+        public List<IdentityUserClaim<string>> claimsInUserClaim { set; get; }
+
+        public async Task GetClaims(string id)
+        {
+            var listRoles = from r in _context.Roles
+                            join ur in _context.UserRoles on r.Id equals ur.RoleId
+                            where ur.UserId == id
+                            select r;
+            var _claimInRole = from c in _context.RoleClaims
+                               join r in listRoles on c.RoleId equals r.Id
+                               select c;
+            claimsInRole = await _claimInRole.ToListAsync();
+
+            claimsInUserClaim = await (from c in _context.UserClaims
+                                       where c.UserId == id
+                                       select c).ToListAsync();
+                            
+
+        }
+
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -58,6 +86,7 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
                 return NotFound($"Không thấy user, id = {id}.");
             }
             UserName = user.UserName;
+            User = user;
             RoleNames = (await _userManager.GetRolesAsync(user)).ToArray<string>();
 
             List<string> roleNames = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
@@ -68,6 +97,7 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
             //{
             //    keyValues = roleNames2.Select((s, i) => new KeyValuePair<string, string>(s.Id, s.Name)).ToList();
             //}
+            await GetClaims(id);
 
             return Page();
         }
@@ -88,6 +118,7 @@ namespace EntityFrameworkInASP.NET.Areas.Admin.Pages.User
 
             //Role Name
 
+            await GetClaims(id);
             // Lấy tất cả các role của user đang có 
             var oldRoleNames = (await _userManager.GetRolesAsync(user)).ToArray();
 

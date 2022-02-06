@@ -1,4 +1,4 @@
-﻿@page "/admin/edit-role/{roleid}"
+﻿@page "/admin/edit-role/{roleId}"
 @model EntityFrameworkInASP.NET.Areas.Admin.Pages.Role.EditModel
 @{
     ViewData["Title"] = "Cập nhật role";
@@ -22,5 +22,21 @@
                 <a class="btn btn-primary" asp-page="./Index">Danh sách các role</a>
             </div>
         </form>
+        <hr />
+        <p>Các đặc tính (claim) của role:</p>
+            <a asp-page="./AddRoleClaim" asp-route-roleid="@Model.role.Id">+Thêm claim</a>
+        @if (Model.Claims.Count>0)
+        {
+            <ul>
+                @foreach (var claim in Model.Claims)
+                {
+                    <li>
+                        <a asp-page="./EditRoleClaim" asp-route-claimId="@claim.Id">  
+                            @claim.ClaimType: @claim.ClaimValue
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
     </div>
 </div>

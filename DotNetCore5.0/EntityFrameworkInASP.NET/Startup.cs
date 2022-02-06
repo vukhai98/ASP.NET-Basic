@@ -30,6 +30,7 @@ namespace EntityFrameworkInASP.NET
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddHttpContextAccessor();
             services.AddOptions();
             var mailsetting = Configuration.GetSection("MailSettings");
             services.Configure<MailSettings>(mailsetting);
@@ -110,7 +111,21 @@ namespace EntityFrameworkInASP.NET
 
             services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
+            services.AddAuthorization(options => {
 
+                options.AddPolicy("AllowEditRole", policyBuilder => {
+                    // Dieu kien cua Policy
+                    policyBuilder.RequireAuthenticatedUser();
+                    //policyBuilder.RequireRole("Admin");
+                    //policyBuilder.RequireRole("Vip");
+                    policyBuilder.RequireClaim("canedit", "user");
+                });
+            });
+            //input : user login
+            //resolve : 
+            // check policy with current user
+            // check claim current user
+            //output : user access to edit role view
 
             //services.AddAuthorization();
 
@@ -162,6 +177,8 @@ namespace EntityFrameworkInASP.NET
             Create
             Edit
             Delete
+       * Policy-based authorization
+       * Claim-based authorization
 
 
 

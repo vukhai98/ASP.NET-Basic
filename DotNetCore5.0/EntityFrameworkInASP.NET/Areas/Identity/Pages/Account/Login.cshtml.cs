@@ -22,7 +22,7 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<AppUser> signInManager, 
+        public LoginModel(SignInManager<AppUser> signInManager,
             ILogger<LoginModel> logger,
             UserManager<AppUser> userManager)
         {
@@ -43,7 +43,7 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required(ErrorMessage ="Phải nhập {0}")]
+            [Required(ErrorMessage = "Phải nhập {0}")]
             //[EmailAddress]
             [Display(Name = "Địa chỉ Email hoặc tên tài khoản.")]
             public string UserNameOrEmail { get; set; }
@@ -79,7 +79,7 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
             returnUrl ??= Url.Content("~/");
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
-        
+
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -90,10 +90,10 @@ namespace EntityFrameworkInASP.NET.Areas.Identity.Pages.Account
                 if (!result.Succeeded)
                 {
                     var user = await _userManager.FindByEmailAsync(Input.UserNameOrEmail);
-                    if(user != null)
+                    if (user != null)
                     {
                         result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, Input.RememberMe, lockoutOnFailure: true);
-                    }    
+                    }
 
                 }
                 if (result.Succeeded)
