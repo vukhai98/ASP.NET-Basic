@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkInASP.NET.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -13,9 +14,12 @@ namespace EntityFrameworkInASP.NET.Pages.Blog
     {
         private readonly MyBlogContext _context;
 
-        public Edit(MyBlogContext context)
+        private readonly IAuthorizationService _authorizationService;
+
+        public Edit(MyBlogContext context, IAuthorizationService authorizationService)
         {
             _context = context;
+            _authorizationService = authorizationService;
         }
 
         [BindProperty]
@@ -50,7 +54,16 @@ namespace EntityFrameworkInASP.NET.Pages.Blog
 
             try
             {
-                await _context.SaveChangesAsync();
+                //Kiểm tra quyền cập nhật
+                var canupdate = await _authorizationService.AuthorizeAsync(this.User, Article, "CanUpdateArticle");
+                if (canupdate.Succeeded)
+                {
+                    await _context.SaveChangesAsync();
+                }
+                else
+                {
+                    return Content("Không được phép truy cập");
+                }
             }
             catch (DbUpdateConcurrencyException)
             {

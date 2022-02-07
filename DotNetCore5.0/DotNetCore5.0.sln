@@ -35,6 +35,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidationExample", "Valida
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EntityFrameworkInASP.NET", "EntityFrameworkInASP.NET\EntityFrameworkInASP.NET.csproj", "{1B80C963-993D-41A5-92ED-3DF25A1AEADC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppMVC.Net", "AppMVC.Net\AppMVC.Net.csproj", "{02F72DF7-BC13-4C26-B574-82937FFA9CF3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{1B80C963-993D-41A5-92ED-3DF25A1AEADC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B80C963-993D-41A5-92ED-3DF25A1AEADC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B80C963-993D-41A5-92ED-3DF25A1AEADC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02F72DF7-BC13-4C26-B574-82937FFA9CF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02F72DF7-BC13-4C26-B574-82937FFA9CF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02F72DF7-BC13-4C26-B574-82937FFA9CF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02F72DF7-BC13-4C26-B574-82937FFA9CF3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

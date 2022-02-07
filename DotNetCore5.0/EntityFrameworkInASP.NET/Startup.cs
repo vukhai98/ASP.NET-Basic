@@ -1,5 +1,7 @@
 ﻿using EntityFrameworkInASP.NET.Models;
+using EntityFrameworkInASP.NET.Security.Requirements;
 using EntityFrameworkInASP.NET.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -111,23 +113,38 @@ namespace EntityFrameworkInASP.NET
 
             services.AddSingleton<IdentityErrorDescriber, AppIdentityErrorDescriber>();
 
-            services.AddAuthorization(options => {
+            services.AddAuthorization(options =>
+            {
 
-                options.AddPolicy("AllowEditRole", policyBuilder => {
+                options.AddPolicy("AllowEditRole", policyBuilder =>
+                {
                     // Dieu kien cua Policy
                     policyBuilder.RequireAuthenticatedUser();
                     //policyBuilder.RequireRole("Admin");
                     //policyBuilder.RequireRole("Vip");
                     policyBuilder.RequireClaim("canedit", "user");
                 });
-            });
-            //input : user login
-            //resolve : 
-            // check policy with current user
-            // check claim current user
-            //output : user access to edit role view
 
-            //services.AddAuthorization();
+                options.AddPolicy("IsGenZ", policyBuilder =>
+                {
+                    // Dieu kien cua Policy
+                    policyBuilder.RequireAuthenticatedUser();
+                    policyBuilder.Requirements.Add(new GenZRequirement());
+                });
+
+                options.AddPolicy("ShowAdminMenu", policyBuilder =>
+                {
+                    policyBuilder.RequireRole("Admin");
+                });
+                options.AddPolicy("CanUpdateArticle", policyBuilder =>
+                {
+                    
+                    policyBuilder.Requirements.Add(new ArticleUpdateRequirement());
+                });
+
+            });
+
+            services.AddTransient<IAuthorizationHandler, AppAuthorizationHandler>();
 
         }
 

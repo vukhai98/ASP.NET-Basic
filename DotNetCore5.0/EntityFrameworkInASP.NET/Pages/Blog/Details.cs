@@ -1,4 +1,5 @@
 ﻿using EntityFrameworkInASP.NET.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EntityFrameworkInASP.NET.Pages.Blog
 {
+    [Authorize(Policy = "IsGenZ")]
     public class Details : PageModel
     {
         private readonly MyBlogContext _context;
