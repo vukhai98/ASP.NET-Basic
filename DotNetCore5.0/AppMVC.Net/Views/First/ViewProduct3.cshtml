@@ -1,0 +1,17 @@
+﻿
+@model AppMVC.Net.Models.ProductModels
+@{
+    var product = ViewBag.product as ProductModels;
+}
+
+<div class="card badge-warning text-white">
+    <h1 class="card-header "> @product.Name</h1>
+    <div class="card-body">
+        <p class="card-text">
+            Giá: @product.Price
+        </p>
+    </div>
+
+</div>
+
+
