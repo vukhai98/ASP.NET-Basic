@@ -1,6 +1,7 @@
 ﻿using AppMVC.Net.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
@@ -9,7 +10,9 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
+
 
 namespace AppMVC.Net
 {
@@ -42,6 +45,7 @@ namespace AppMVC.Net
             });
 
             services.AddSingleton<ProductServices, ProductServices>();
+            services.AddSingleton<PlantService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +64,8 @@ namespace AppMVC.Net
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+            app.AddStatusCodePage(); // Tuy biến respone khi có lỗi từ 400 -> 599
+
             app.UseRouting(); // EnpointRoutingMiddleware
 
             app.UseAuthentication(); // Xác định danh tính
@@ -69,9 +75,51 @@ namespace AppMVC.Net
 
             app.UseEndpoints(endpoints =>
             {
+
+            //sayhi
+            endpoints.MapGet("/sayhi", async (context) =>
+            {
+                await context.Response.WriteAsync($"Hello ASP.NET MVC {DateTime.Now}");
+            });
+
+            //endpoints.MapControllers
+            //endpoints.MapAreaControllerRoute
+            //endpoints.MapControllerRoute
+            //endpoints.MapDefaultControllerRoute
+
+            //[AcceptVerbs]
+
+            //[Route]
+            //[HttpGet]
+            //[HttpPost]
+            //[HttpPut]
+            //[HttpDelete]
+            //[HttpHead]
+            //[HttpPatch]
+
+            endpoints.MapControllerRoute(
+                name: "first",
+                pattern: "{url:regex(^(xemsanpham)|(viewproduct)$)}/{id:range(2,4)}",
+                defaults: new
+                {
+                    controller = "First",
+                    action = "ViewProduct"
+                }
+                );
+
+            endpoints.MapAreaControllerRoute(
+                name:"product",
+                pattern: "/{controller=Home}/{action=Index}/{id?}",
+                areaName: "ProductManage"
+
+                );
+
+
+                // Controller không có Area
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                name: "default",
+                pattern: "/{controller=Home}/{action=Index}/{id?}"
+                );
 
                 endpoints.MapRazorPages();
             });

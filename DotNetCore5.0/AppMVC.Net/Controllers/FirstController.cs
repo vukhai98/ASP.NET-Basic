@@ -1,5 +1,4 @@
-﻿using AppMVC.Net.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -124,13 +123,14 @@ namespace AppMVC.Net.Controllers
         [TempData]
         public string StatusMessage { set; get; }
 
+        [AcceptVerbs("POST","GET")]
         public IActionResult ViewProduct(int? id)
         {
             var product = _productServices.Where(p => p.Id == id).FirstOrDefault();
             if (product==null)
             {
                 //TempData["StatusMessage"] = "San phan ban yeu cau khong co";
-                StatusMessage = $"Không có sản phẩm có Id = {id}";
+                //StatusMessage = $"Không có sản phẩm có Id = {id}";
                 return Redirect(Url.Action("Index", "Home"));
             }
             //return Content($"San pham ID = {id}");
