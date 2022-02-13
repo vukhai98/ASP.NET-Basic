@@ -8,6 +8,7 @@ namespace AppMVC.Net.Models
 {
     public class AppDbContext : DbContext 
     {
+        public DbSet<ContactModel> Contacts { set; get; }
         
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
